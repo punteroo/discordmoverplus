@@ -1,0 +1,25 @@
+{
+    "mongoDb": "",
+    "sourcemod": {
+        "secret": ""
+    },
+    "discord": {
+        "channels": [
+            {
+                "name": "6vs6",
+                "waiting": "113300952538198016",
+                "red": "932073097840980027",
+                "blu": "932073100240113664"
+            }
+        ],
+        "clientId": "",
+        "secret": "",
+        "host": "",
+        "guild": "",
+        "token": ""
+    },
+    "linking": {
+        "allowSteamAccountUpdate": false,
+        "allowNameUpdate": true
+    }
+}
