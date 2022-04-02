@@ -94,7 +94,7 @@ Once the plugin is compiled and installed on the server you need to configure so
 
 Open your `tf/cfg/server.cfg` config file or `tf/cfg/sourcemod/sourcemod.cfg` and add the following ConVars according to your configuration:
 
-```json
+```
 sm_dmp_uri "http://yourapp.com/sourcemod/teams" // Your NestJS application's /sourcemod/teams endpoint (endpoint means add /sourcemod/teams to your app's hostname)
 sm_dmp_secret "jamesbond007"                    // The secret passphrase defined in the config file. BOTH MUST match.
 
