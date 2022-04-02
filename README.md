@@ -1,73 +1,89 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+# DiscordMover+
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Customised system that allows administrators to move players between voice channels for competitive pugging servers on Team Fortress 2.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This is a direct upgrade of [the old DiscordMover](https://github.com/punteroo/DiscordTF2Mover) which was a hassle to install and maintain.
 
 ## Installation
 
 ```bash
+$ cd /dirofproj/
 $ npm install
 ```
 
-## Running the app
+## Running
 
 ```bash
-# development
+# Run App
 $ npm run start
 
-# watch mode
+# Run in Development
 $ npm run start:dev
 
-# production mode
+# Run in Production
 $ npm run start:prod
 ```
 
-## Test
+## Configuration
 
-```bash
-# unit tests
-$ npm run test
+To modify the app's behaivor always use `config.json` on the root folder.
 
-# e2e tests
-$ npm run test:e2e
+By default the application runs on the port `7777`.
 
-# test coverage
-$ npm run test:cov
+```js
+{
+    // MongoDB Connect URI
+    "mongoDb": "",
+
+    "sourcemod": {
+        // A secret passphrase for the SourceMod plugin to use for communication with the app.
+        // This must be the same as the one set in your plugin's ConVars.
+        "secret": ""
+    },
+    
+    "discord": {
+        // Array of channels where the app will perform movings in.
+        // As an example:
+        //
+        //  You can have a set of waiting, RED & BLU voice channels for 6vs6 pugs, and have another exact same set but for Highlander.
+        //  The app will distinguish which is on which set and move users to the "format" corresponding channels.
+        "channels": [
+            {
+                "name": "6vs6",
+                "waiting": "954854823604416536",
+                "red": "954864057071075398",
+                "blu": "954864101782339585"
+            }
+        ],
+
+        // Discord Application Client ID
+        "clientId": "",
+
+        // Discord Application Secret
+        "secret": "",
+
+        // Hostname on which this application is being hosted in (without leading /) (Ex: https://yourwebpage.com)
+        "host": "",
+
+        // Discord Guild ID of the server the bot will work in.
+        "guild": "",
+
+        // Discord Bot User Token
+        "token": ""
+    },
+
+    "linking": {
+        // If true, allows users that re-link their accounts to update the linked Steam account.
+        "allowSteamAccountUpdate": false,
+
+        // If true, allows users that re-link their accounts to update their name.
+        "allowNameUpdate": true
+    }
+}
 ```
 
-## Support
+## Inquiries
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Any suggestion is welcome.
 
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+If you find an error, bug, exploit or any of the sort be sure to leave a corresponding issue on the repository.
