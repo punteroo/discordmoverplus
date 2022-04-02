@@ -6,10 +6,14 @@ This is a direct upgrade of [the old DiscordMover](https://github.com/punteroo/D
 
 ## Installation
 
+For NestJS application
+
 ```bash
 $ cd /dirofproj/
 $ npm install
 ```
+
+SourceMod plugin is provided with dependencies. Compile with latest SourceMod Compiler.
 
 ## Running
 
@@ -25,6 +29,8 @@ $ npm run start:prod
 ```
 
 ## Configuration
+
+### NestJS App
 
 To modify the app's behaivor always use `config.json` on the root folder.
 
@@ -81,6 +87,29 @@ By default the application runs on the port `7777`.
     }
 }
 ```
+
+### SourceMod (TF2 Server)
+
+Once the plugin is compiled and installed on the server you need to configure some ConVars to have both systems communicate with each other.
+
+Open your `tf/cfg/server.cfg` config file or `tf/cfg/sourcemod/sourcemod.cfg` and add the following ConVars according to your configuration:
+
+```json
+sm_dmp_uri "http://yourapp.com/sourcemod/teams" // Your NestJS application's hostname with the /sourcemod/teams endpoint (add /sourcemod/teams to your hostname)
+sm_dmp_secret "jamesbond007"                    // The secret passphrase defined in the config file. BOTH MUST match.
+
+sm_dmp_cooldown "60.0"                          // Time (in seconds) between being able to run the !move command again on the server.
+```
+
+## Usage
+
+On your Team Fortress 2 server, run `sm_move` to send a request for a player move.
+
+There is an optional parameter `waiting` on the `sm_move` command which will move all players back to their corresponding waiting voice channel.
+
+Example:
+- `sm_move` - Moves all players to their team channels.
+- `sm_move 1` - Moves all players back to their waiting channel.
 
 ## Inquiries
 
