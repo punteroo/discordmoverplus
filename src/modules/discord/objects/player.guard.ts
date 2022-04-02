@@ -10,7 +10,7 @@ export class PlayerGuard implements CanActivate {
     // Get provided secret
     const secret = context.switchToHttp().getRequest().headers.authorization;
 
-    if (secret !== config.discord.secret || !secret)
+    if (secret.split(' ')[1] !== config.sourcemod.secret)
       throw new UnauthorizedException('Invalid authorization secret / Missing');
 
     return true;

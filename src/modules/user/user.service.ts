@@ -19,7 +19,7 @@ export class UserService {
     type: 'discord' | 'steam',
   ): Promise<User> {
     let u: any = await this.user.findOne({
-      [type]: user.id,
+      [type]: user.id === undefined ? user : user.id,
     });
 
     // If no user is found, create one.
@@ -56,12 +56,13 @@ export class UserService {
         });
 
       // Create the new user.
+      // Remove non ASCII so we don't have some nasty problems.
       u = new this.user({
         discord: user.id,
         steam: steam.id,
         linkedAt: new Date(),
         updated: new Date(),
-        name: user.username,
+        name: user.username.replace(/[^\x00-\x7F]/g, ''),
       });
 
       // Return the new user

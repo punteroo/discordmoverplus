@@ -3,5 +3,5 @@ export interface PlayerRequest {
   steam: string;
 
   // The player's assigned team name (must be red or blu)
-  team: 'red' | 'blu';
+  team: 'red' | 'blu' | 'waiting';
 }
