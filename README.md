@@ -68,7 +68,7 @@ By default the application runs on the port `7777`.
         // Discord Application Secret
         "secret": "",
 
-        // Hostname on which this application is being hosted in (without leading /) (Ex: https://yourwebpage.com)
+        // Hostname on which this application is being hosted in (without leading /) (Ex: http://yourapp.com)
         "host": "",
 
         // Discord Guild ID of the server the bot will work in.
@@ -88,14 +88,14 @@ By default the application runs on the port `7777`.
 }
 ```
 
-### SourceMod (TF2 Server)
+### SourceMod
 
 Once the plugin is compiled and installed on the server you need to configure some ConVars to have both systems communicate with each other.
 
 Open your `tf/cfg/server.cfg` config file or `tf/cfg/sourcemod/sourcemod.cfg` and add the following ConVars according to your configuration:
 
 ```json
-sm_dmp_uri "http://yourapp.com/sourcemod/teams" // Your NestJS application's hostname with the /sourcemod/teams endpoint (add /sourcemod/teams to your hostname)
+sm_dmp_uri "http://yourapp.com/sourcemod/teams" // Your NestJS application's /sourcemod/teams endpoint (endpoint means add /sourcemod/teams to your app's hostname)
 sm_dmp_secret "jamesbond007"                    // The secret passphrase defined in the config file. BOTH MUST match.
 
 sm_dmp_cooldown "60.0"                          // Time (in seconds) between being able to run the !move command again on the server.
@@ -103,7 +103,17 @@ sm_dmp_cooldown "60.0"                          // Time (in seconds) between bei
 
 ## Usage
 
-On your Team Fortress 2 server, run `sm_move` to send a request for a player move.
+### Player Account Linking
+
+Players are required to have their **Steam** account linked to their **Discords'**. This can be done on Discord's settings and takes around a minute or so.
+
+The application has a public endpoint `http://yourapp.com/api/link` where users can link their accounts via Discord's OAuth. For players to be moved they **must** link their accounts on this endpoint. Be sure to have all your players link their accounts before trying to use the system.
+
+If linking was successful they will be shown a JSON output with their link information.
+
+### Requesting a Player Move
+
+On your Team Fortress 2 server (assuming all players are on a team, and connected to the waiting voice channel) run `sm_move` to send a request for a player move.
 
 There is an optional parameter `waiting` on the `sm_move` command which will move all players back to their corresponding waiting voice channel.
 
